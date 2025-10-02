@@ -9,11 +9,12 @@
 const express = require('express');
 const app = express();
 const db = require("./db");
+require('dotenv').config();
 
 const bodyParser = require('body-parser');
 app.use(express.json()); // bodyParae take data an convert it into object then store data in (req.body).
+const PORT = process.env.PORT || 3000;
 
-let port=3000;
 
 app.get('/', (req, res) =>{
   res.send('welcome to our hotel')
@@ -47,6 +48,6 @@ app.use('/menu',MenuItemRoutes);
 //   }
 //   res.send(customized_samosa)
 // })
-app.listen(port,()=>{
+app.listen(PORT,()=>{
   console.log('surver is activated(3000)')
 }); 
