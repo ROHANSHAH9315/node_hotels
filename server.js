@@ -28,10 +28,6 @@ const MenuItemRoutes = require('./routes/menuItemRoutes');
 app.use('/person',personRoutes);
 app.use('/menu',MenuItemRoutes);
 
-app.get("/", (req, res) => {
-res.send("Your service is live 🎉");
-});
-
 
 // app.get('/chicken', (req,res)=>{
 //   res.send('sure sir , i would love to serve chiken')
