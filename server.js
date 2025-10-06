@@ -10,13 +10,28 @@ const express = require('express');
 const app = express();
 const db = require("./db");
 require('dotenv').config();
+const passport = require('./auth');
 
 const bodyParser = require('body-parser');
 app.use(express.json()); // bodyParae take data an convert it into object then store data in (req.body).
 const PORT = process.env.PORT || 3000;
 
 
-app.get('/', (req, res) =>{
+
+// Middleware function.
+const logRequest = (req, res, next)=>{
+  console.log(`[${new Date().toLocaleDateString()}] Request Mode to: [${req.originalUrl}]`)
+  next();// Move on to the next phase.
+}
+app.use(logRequest);
+
+
+
+
+app.use(passport.initialize());
+
+const localAuthMiddleware = passport.authenticate('local', {session: false});
+app.get('/',(req, res) =>{
   res.send('welcome to our hotel')
 })
 
